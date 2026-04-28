@@ -12,17 +12,17 @@
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:var(--font);background:var(--bg);color:var(--text-primary);min-height:100vh;transition:background 0.3s,color 0.3s;}
 .header{position:sticky;top:0;z-index:100;background:var(--bg-card);border-bottom:1px solid var(--border);padding:0 1.25rem;height:60px;display:flex;align-items:center;justify-content:space-between;box-shadow:var(--shadow);gap:8px;}
-.header-logo{font-family:var(--font-display);font-size:1.5rem;font-weight:600;color:var(--accent);letter-spacing:-0.5px;flex-shrink:0;cursor:text;padding:2px 6px;border-radius:6px;transition:background 0.15s;}
+.header-logo{font-family:var(--font-display);font-size:1.5rem;font-weight:600;color:var(--accent);letter-spacing:-0.5px;flex-shrink:0;cursor:text;padding:2px 6px;border-radius:6px;transition:background 0.15s,opacity 0.2s,max-width 0.25s;max-width:300px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .header-logo:hover{background:var(--bg-secondary);}
 .header-logo.editing{background:var(--bg-secondary);outline:2px solid var(--accent);}
-.header-actions{display:flex;gap:8px;align-items:center;flex-shrink:0;}
-.search-bar{flex:1;min-width:0;max-width:320px;display:flex;align-items:center;gap:6px;background:var(--bg-secondary);border:1px solid var(--border-strong);border-radius:20px;padding:0 8px 0 12px;transition:border-color 0.15s,background 0.15s;}
+.header-actions{display:flex;gap:8px;align-items:center;flex-shrink:0;transition:opacity 0.2s,max-width 0.25s;max-width:200px;overflow:hidden;}
+.search-bar{flex:1;min-width:0;max-width:320px;display:flex;align-items:center;gap:6px;background:var(--bg-secondary);border:1px solid var(--border-strong);border-radius:20px;padding:0 8px 0 12px;transition:border-color 0.15s,background 0.15s,max-width 0.25s;}
 .search-bar:focus-within{border-color:var(--accent);background:var(--bg-card);}
 .search-icon-static{font-size:0.9rem;flex-shrink:0;line-height:1;}
 .search-bar input{flex:1;min-width:0;padding:7px 0;border:none;background:transparent;color:var(--text-primary);font-family:var(--font);font-size:0.85rem;outline:none;}
 .search-clear{flex-shrink:0;width:20px;height:20px;border:none;background:var(--gray-200);color:#fff;border-radius:50%;cursor:pointer;font-size:0.7rem;display:none;align-items:center;justify-content:center;line-height:1;}
 .search-clear.show{display:flex;}
-.btn-icon{width:36px;height:36px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--bg-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all 0.15s;color:var(--text-primary);}
+.btn-icon{width:36px;height:36px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--bg-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all 0.15s;color:var(--text-primary);flex-shrink:0;}
 .btn-icon:hover{background:var(--accent-light);border-color:var(--accent-mid);}
 .nav-tabs{position:sticky;top:60px;z-index:90;background:var(--bg-card);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;}
 .nav-tabs::-webkit-scrollbar{display:none;}
@@ -30,7 +30,7 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-primary);min-
 .nav-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
 .nav-tab:hover:not(.active){color:var(--text-primary);background:var(--bg-secondary);}
 .nav-badge{background:var(--accent);color:#fff;font-size:0.65rem;font-weight:800;padding:2px 7px;border-radius:20px;min-width:18px;text-align:center;}
-.main{padding:1.25rem;max-width:860px;margin:0 auto;padding-bottom:6rem;}
+.main{padding:1.25rem;max-width:860px;margin:0 auto;padding-bottom:7rem;}
 .section-page{display:none;}.section-page.active{display:block;}
 .section-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;flex-wrap:wrap;gap:8px;}
 .section-title{font-family:var(--font-display);font-size:1.4rem;font-weight:600;color:var(--text-primary);}
@@ -46,20 +46,23 @@ body{font-family:var(--font);background:var(--bg);color:var(--text-primary);min-
 .btn-sm{padding:5px 10px;font-size:0.75rem;}
 .category-card{background:var(--bg-card);border-radius:var(--radius);border:1px solid var(--border);margin-bottom:1rem;overflow:hidden;transition:box-shadow 0.15s;}
 .category-card:hover{box-shadow:var(--shadow);}
+/* CATEGORY HEADER — clickable except on editable name/emoji and delete button */
 .category-header{display:flex;align-items:center;justify-content:space-between;padding:0.875rem 1rem;cursor:pointer;background:var(--bg-secondary);border-bottom:1px solid var(--border);gap:8px;}
 .category-header-left{display:flex;align-items:center;gap:10px;flex:1;min-width:0;}
-.category-emoji{font-size:1.2rem;flex-shrink:0;cursor:text;padding:2px 4px;border-radius:4px;transition:background 0.15s;}
+.category-emoji{font-size:1.2rem;flex-shrink:0;cursor:text;padding:2px 4px;border-radius:4px;transition:background 0.15s;display:inline-block;}
 .category-emoji:hover{background:var(--bg-card);}
 .category-emoji.editing{background:var(--bg-card);outline:2px solid var(--accent);}
-.category-name{font-weight:700;font-size:0.9rem;cursor:text;padding:2px 4px;border-radius:4px;transition:background 0.15s;flex:1;min-width:0;}
+.category-name{font-weight:700;font-size:0.9rem;cursor:text;padding:2px 4px;border-radius:4px;transition:background 0.15s;display:inline-block;max-width:fit-content;}
 .category-name:hover{background:var(--bg-card);}
-.category-name.editing{background:var(--bg-card);outline:2px solid var(--accent);}
-.category-count{font-size:0.75rem;color:var(--text-hint);background:var(--bg);border:1px solid var(--border);padding:2px 8px;border-radius:20px;flex-shrink:0;}
+.category-name.editing{background:var(--bg-card);outline:2px solid var(--accent);min-width:80px;}
+/* Spacer that fills remaining horizontal space and triggers collapse on click */
+.category-spacer{flex:1;height:30px;cursor:pointer;}
+.category-count{font-size:0.75rem;color:var(--text-hint);background:var(--bg);border:1px solid var(--border);padding:2px 8px;border-radius:20px;flex-shrink:0;cursor:pointer;}
 .category-header-actions{display:flex;align-items:center;gap:4px;flex-shrink:0;}
 .cat-action-btn{width:28px;height:28px;border-radius:6px;border:none;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--text-hint);transition:all 0.15s;}
 .cat-action-btn:hover{background:var(--bg-card);color:var(--text-primary);}
 .cat-action-btn.delete:hover{color:var(--coral-400);background:var(--coral-50);}
-.category-chevron{font-size:0.75rem;color:var(--text-hint);transition:transform 0.2s;}
+.category-chevron{font-size:0.75rem;color:var(--text-hint);transition:transform 0.2s;cursor:pointer;padding:4px;}
 .category-card.collapsed .category-chevron{transform:rotate(-90deg);}
 .category-card.collapsed .category-body{display:none;}
 .category-body{padding:0.5rem 0;}
@@ -118,12 +121,26 @@ input:focus,select:focus,textarea:focus{border-color:var(--accent);}
 .report-list{margin-top:6px;padding-left:18px;font-size:0.8rem;color:var(--text-secondary);}
 .report-list li{padding:2px 0;}
 ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:transparent;}::-webkit-scrollbar-thumb{background:var(--gray-200);border-radius:3px;}
-@media(max-width:600px){.main{padding:0.875rem;}.header-logo{font-size:1.1rem;}.search-bar{max-width:none;}.section-header{flex-direction:column;align-items:flex-start;}.header{padding:0 0.75rem;}.stats-row{flex-direction:column;align-items:stretch;}}
+
+/* MOBILE: search bar expands when focused, hiding title and theme toggle */
+@media(max-width:600px){
+  .main{padding:0.875rem;padding-bottom:8.5rem;}
+  .header-logo{font-size:1.05rem;max-width:35vw;}
+  .header{padding:0 0.6rem;gap:6px;}
+  .search-bar{max-width:100%;}
+  .header-actions{gap:4px;}
+  .section-header{flex-direction:column;align-items:flex-start;}
+  .stats-row{flex-direction:column;align-items:stretch;}
+  /* Search expanded state */
+  .header.search-active .header-logo{max-width:0;opacity:0;padding:0;margin:0;}
+  .header.search-active .header-actions{max-width:0;opacity:0;}
+  .header.search-active .search-bar{max-width:none;}
+}
 </style>
 </head>
 <body>
 <div class="toast" id="toast"></div>
-<header class="header">
+<header class="header" id="app-header">
   <div class="header-logo" id="app-title" title="Click para editar">Lista Puuungosa</div>
   <div class="search-bar">
     <span class="search-icon-static">🔍</span>
@@ -246,14 +263,15 @@ function renderCategory(cat,sec){
   card.id='cat-'+cat.id;
   card.innerHTML=`
     <div class="category-header">
-      <div class="category-header-left" onclick="toggleCat('${cat.id}','${sec}')">
+      <div class="category-header-left">
         <span class="category-emoji" data-cat="${cat.id}" data-sec="${sec}" data-field="emoji" title="Click para editar">${escapeHtml(cat.emoji)}</span>
         <span class="category-name" data-cat="${cat.id}" data-sec="${sec}" data-field="name" title="Click para editar">${escapeHtml(cat.name)}</span>
-        <span class="category-count">${checked}/${cat.items.length}</span>
+        <span class="category-spacer" data-collapse="${cat.id}" data-sec="${sec}"></span>
+        <span class="category-count" data-collapse="${cat.id}" data-sec="${sec}">${checked}/${cat.items.length}</span>
       </div>
       <div class="category-header-actions">
         <button class="cat-action-btn delete" title="Eliminar categoría" onclick="event.stopPropagation();deleteCat('${cat.id}','${sec}')">🗑️</button>
-        <span class="category-chevron" onclick="toggleCat('${cat.id}','${sec}')">▼</span>
+        <span class="category-chevron" data-collapse="${cat.id}" data-sec="${sec}">▼</span>
       </div>
     </div>
     <div class="category-body">
@@ -268,7 +286,16 @@ function renderCategory(cat,sec){
         <button class="btn btn-sm" onclick="toggleAddForm('${cat.id}')">Cancelar</button>
       </div>
     </div>`;
-  setTimeout(()=>{card.querySelectorAll('.category-emoji,.category-name').forEach(el=>{el.addEventListener('click',e=>{e.stopPropagation();startInlineEdit(el);});});},0);
+  setTimeout(()=>{
+    // Inline edit binding
+    card.querySelectorAll('.category-emoji,.category-name').forEach(el=>{
+      el.addEventListener('click',e=>{e.stopPropagation();startInlineEdit(el);});
+    });
+    // Collapse triggers (spacer, count, chevron)
+    card.querySelectorAll('[data-collapse]').forEach(el=>{
+      el.addEventListener('click',e=>{e.stopPropagation();toggleCat(el.dataset.collapse,el.dataset.sec);});
+    });
+  },0);
   return card;
 }
 
@@ -314,15 +341,16 @@ function renderProvider(prov){
   card.id='prov-'+prov.id;
   card.innerHTML=`
     <div class="category-header">
-      <div class="category-header-left" onclick="toggleProv('${prov.id}')">
-        <span class="category-emoji">🏪</span>
-        <span class="category-name">${escapeHtml(prov.name)}</span>
-        <span class="category-count">${checked}/${prov.items.length}</span>
+      <div class="category-header-left">
+        <span class="category-emoji" data-collapse-prov="${prov.id}">🏪</span>
+        <span class="category-name" data-collapse-prov="${prov.id}" style="cursor:pointer">${escapeHtml(prov.name)}</span>
+        <span class="category-spacer" data-collapse-prov="${prov.id}"></span>
+        <span class="category-count" data-collapse-prov="${prov.id}">${checked}/${prov.items.length}</span>
       </div>
       <div class="category-header-actions">
         <button class="cat-action-btn" title="Editar proveedor" onclick="event.stopPropagation();editProvider('${prov.id}')">✏️</button>
         <button class="cat-action-btn delete" title="Eliminar proveedor" onclick="event.stopPropagation();deleteProvider('${prov.id}')">🗑️</button>
-        <span class="category-chevron" onclick="toggleProv('${prov.id}')">▼</span>
+        <span class="category-chevron" data-collapse-prov="${prov.id}">▼</span>
       </div>
     </div>
     <div class="category-body">
@@ -348,6 +376,11 @@ function renderProvider(prov){
         <button class="btn btn-sm" onclick="toggleAddForm('prov-${prov.id}')">Cancelar</button>
       </div>
     </div>`;
+  setTimeout(()=>{
+    card.querySelectorAll('[data-collapse-prov]').forEach(el=>{
+      el.addEventListener('click',e=>{e.stopPropagation();toggleProv(el.dataset.collapseProv);});
+    });
+  },0);
   return card;
 }
 
@@ -441,6 +474,32 @@ function buildContactText(prov){if(!prov.contactValue)return'';if(prov.contactTy
 function safe(str){if(!str)return'';return str.replace(/[áàäâ]/gi,'a').replace(/[éèëê]/gi,'e').replace(/[íìïî]/gi,'i').replace(/[óòöô]/gi,'o').replace(/[úùüû]/gi,'u').replace(/ñ/gi,'n').replace(/[^\x20-\x7E]/g,'');}
 function emojiToPng(emoji,size){try{const cv=document.createElement('canvas');cv.width=size;cv.height=size;const ctx=cv.getContext('2d');ctx.font=(size*0.8)+'px serif';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(emoji,size/2,size/2+1);return cv.toDataURL('image/png');}catch(e){return null;}}
 
+// Word-wrap helper for jsPDF — splits text to fit max width, preserving words
+function wrapText(doc,text,maxW){
+  if(!text)return[];
+  const words=text.split(/\s+/);
+  const lines=[];
+  let cur='';
+  for(const w of words){
+    const test=cur?cur+' '+w:w;
+    if(doc.getTextWidth(test)<=maxW){cur=test;}
+    else{
+      if(cur)lines.push(cur);
+      // If single word too wide, break by chars
+      if(doc.getTextWidth(w)>maxW){
+        let chunk='';
+        for(const ch of w){
+          if(doc.getTextWidth(chunk+ch)<=maxW)chunk+=ch;
+          else{if(chunk)lines.push(chunk);chunk=ch;}
+        }
+        cur=chunk;
+      } else {cur=w;}
+    }
+  }
+  if(cur)lines.push(cur);
+  return lines;
+}
+
 function drawItem(doc,item,x,y,colW,C,checkboxIndex,opts){
   opts=opts||{};
   const isM=opts.mobile;
@@ -450,44 +509,112 @@ function drawItem(doc,item,x,y,colW,C,checkboxIndex,opts){
   const noteSize=isM?9:6;
   const nameX=x+boxSize+(isM?5:3.5);
   const hasNote=item.note&&item.note.trim()!=='';
-  const baseRowH=isM?(hasNote?16:11):(hasNote?10:7);
-  const verticalCenter=y+(boxSize/2)+1;
 
   doc.setFillColor(C.checkBg[0],C.checkBg[1],C.checkBg[2]);doc.roundedRect(x+1,y+0.5,boxSize,boxSize,0.8,0.8,'F');
   doc.setDrawColor(C.checkBorder[0],C.checkBorder[1],C.checkBorder[2]);doc.setLineWidth(0.4);doc.roundedRect(x+1,y+0.5,boxSize,boxSize,0.8,0.8,'S');
   try{const cb=new window.jspdf.AcroFormCheckBox();cb.fieldName='check_'+checkboxIndex;cb.x=x+1;cb.y=y+0.5;cb.width=boxSize;cb.height=boxSize;cb.value='No';cb.appearanceState='Off';cb.color='#3B6D11';doc.addField(cb);}catch(e){}
 
-  doc.setTextColor(C.dark[0],C.dark[1],C.dark[2]);doc.setFont('helvetica','bold');doc.setFontSize(nameSize);
-  const nameStr=safe(item.name);
-  const maxNameW=colW-(boxSize+(isM?5:3.5))-(item.qty?(isM?22:14):0);
-  let displayName=nameStr;
-  while(doc.getTextWidth(displayName)>maxNameW&&displayName.length>3)displayName=displayName.slice(0,-1);
-  if(displayName!==nameStr)displayName=displayName.slice(0,-1)+'..';
-  doc.text(displayName,nameX,verticalCenter+(isM?0.5:0));
-
-  if(item.qty){
-    const nw=doc.getTextWidth(displayName);
-    const qtyStr=safe(item.qty);
-    doc.setFont('helvetica','bold');doc.setFontSize(qtySize);
-    const qtyW=doc.getTextWidth(qtyStr)+(isM?4:2.5);
-    const qx=nameX+nw+(isM?3:1.5);
-    if(qx+qtyW<x+colW-1){
-      doc.setFillColor(C.tealLight[0],C.tealLight[1],C.tealLight[2]);
-      doc.roundedRect(qx-(isM?1:0.5),y+(isM?1:0.7),qtyW+(isM?2:1),isM?5:3.5,1,1,'F');
-      doc.setTextColor(C.teal[0],C.teal[1],C.teal[2]);
-      doc.text(qtyStr,qx+(isM?1:0.5),verticalCenter+(isM?0.5:0));
+  if(isM){
+    // MOBILE: word-wrap name and note across multiple lines
+    doc.setFont('helvetica','bold');doc.setFontSize(nameSize);
+    const nameStr=safe(item.name);
+    // Reserve space on right for qty pill if present
+    let availW=colW-(boxSize+5)-2;
+    let qtyStr=item.qty?safe(item.qty):'';
+    let qtyW=0;
+    if(qtyStr){doc.setFont('helvetica','bold');doc.setFontSize(qtySize);qtyW=doc.getTextWidth(qtyStr)+4;}
+    // Wrap name considering qty pill on first line only
+    doc.setFont('helvetica','bold');doc.setFontSize(nameSize);
+    const firstLineMaxW=availW-(qtyStr?qtyW+3:0);
+    const allLines=wrapText(doc,nameStr,availW);
+    // If first line is wider than firstLineMaxW, push qty to its own area but keep wrapping
+    let nameLines=allLines;
+    // Re-wrap making first line shorter if needed (so qty fits)
+    if(qtyStr&&nameLines.length>0&&doc.getTextWidth(nameLines[0])>firstLineMaxW){
+      // Re-wrap: first chunk fits firstLineMaxW, rest fit availW
+      const wordsFirst=nameStr.split(/\s+/);
+      let firstChunk='',rest='';
+      let i=0;
+      for(;i<wordsFirst.length;i++){
+        const test=firstChunk?firstChunk+' '+wordsFirst[i]:wordsFirst[i];
+        if(doc.getTextWidth(test)<=firstLineMaxW)firstChunk=test;
+        else break;
+      }
+      rest=wordsFirst.slice(i).join(' ');
+      nameLines=firstChunk?[firstChunk]:[];
+      if(rest)nameLines=nameLines.concat(wrapText(doc,rest,availW));
     }
-  }
+    if(nameLines.length===0)nameLines=[''];
 
-  if(hasNote){
-    doc.setTextColor(C.gray[0],C.gray[1],C.gray[2]);doc.setFont('helvetica','italic');doc.setFontSize(noteSize);
-    let noteStr=safe(item.note);
-    const maxNW=colW-(boxSize+(isM?5:3.5))-2;
-    while(doc.getTextWidth(noteStr)>maxNW&&noteStr.length>3)noteStr=noteStr.slice(0,-1);
-    if(noteStr!==safe(item.note))noteStr=noteStr.slice(0,-1)+'..';
-    doc.text(noteStr,nameX,y+baseRowH-(isM?2:1.5));
+    const lineH=nameSize*0.42;
+    // Draw name lines
+    doc.setTextColor(C.dark[0],C.dark[1],C.dark[2]);doc.setFont('helvetica','bold');doc.setFontSize(nameSize);
+    let curY=y+boxSize/2+1.5;
+    nameLines.forEach((ln,idx)=>{
+      doc.text(ln,nameX,curY+idx*lineH);
+    });
+
+    // Draw qty pill on first line, right-aligned
+    if(qtyStr){
+      doc.setFont('helvetica','bold');doc.setFontSize(qtySize);
+      const qx=x+colW-qtyW-1;
+      doc.setFillColor(C.tealLight[0],C.tealLight[1],C.tealLight[2]);
+      doc.roundedRect(qx,y+1,qtyW,5,1,1,'F');
+      doc.setTextColor(C.teal[0],C.teal[1],C.teal[2]);
+      doc.text(qtyStr,qx+2,y+4.5);
+    }
+
+    let nameBlockH=nameLines.length*lineH;
+    let bottomY=y+Math.max(boxSize+1,nameBlockH+1);
+
+    // Draw note lines below
+    if(hasNote){
+      doc.setTextColor(C.gray[0],C.gray[1],C.gray[2]);doc.setFont('helvetica','italic');doc.setFontSize(noteSize);
+      const noteLines=wrapText(doc,'Nota: '+safe(item.note),availW);
+      const noteLineH=noteSize*0.42;
+      noteLines.forEach((ln,idx)=>{
+        doc.text(ln,nameX,bottomY+1+idx*noteLineH);
+      });
+      bottomY+=noteLines.length*noteLineH+1;
+    }
+
+    return Math.max(boxSize+2,bottomY-y+1);
+  } else {
+    // DESKTOP / 3-COL: keep single line with truncation (was working fine)
+    const baseRowH=hasNote?10:7;
+    const verticalCenter=y+(boxSize/2)+1;
+    doc.setTextColor(C.dark[0],C.dark[1],C.dark[2]);doc.setFont('helvetica','bold');doc.setFontSize(nameSize);
+    const nameStr=safe(item.name);
+    const maxNameW=colW-(boxSize+3.5)-(item.qty?14:0);
+    let displayName=nameStr;
+    while(doc.getTextWidth(displayName)>maxNameW&&displayName.length>3)displayName=displayName.slice(0,-1);
+    if(displayName!==nameStr)displayName=displayName.slice(0,-1)+'..';
+    doc.text(displayName,nameX,verticalCenter);
+
+    if(item.qty){
+      const nw=doc.getTextWidth(displayName);
+      const qtyStr=safe(item.qty);
+      doc.setFont('helvetica','bold');doc.setFontSize(qtySize);
+      const qtyW=doc.getTextWidth(qtyStr)+2.5;
+      const qx=nameX+nw+1.5;
+      if(qx+qtyW<x+colW-1){
+        doc.setFillColor(C.tealLight[0],C.tealLight[1],C.tealLight[2]);
+        doc.roundedRect(qx-0.5,y+0.7,qtyW+1,3.5,1,1,'F');
+        doc.setTextColor(C.teal[0],C.teal[1],C.teal[2]);
+        doc.text(qtyStr,qx+0.5,verticalCenter);
+      }
+    }
+
+    if(hasNote){
+      doc.setTextColor(C.gray[0],C.gray[1],C.gray[2]);doc.setFont('helvetica','italic');doc.setFontSize(noteSize);
+      let noteStr=safe(item.note);
+      const maxNW=colW-(boxSize+3.5)-2;
+      while(doc.getTextWidth(noteStr)>maxNW&&noteStr.length>3)noteStr=noteStr.slice(0,-1);
+      if(noteStr!==safe(item.note))noteStr=noteStr.slice(0,-1)+'..';
+      doc.text(noteStr,nameX,y+baseRowH-1.5);
+    }
+    return baseRowH;
   }
-  return baseRowH;
 }
 
 let checkboxCounter=0;
@@ -711,7 +838,6 @@ function exportMobilePDF(){
   const drawCatHeaderMobile=(cat,isProvider)=>{
     const needed=16+(isProvider&&cat.contactText?10:0)+Math.min(cat.items.length,2)*14;
     if(y+needed>MAX_Y){doc.addPage();y=8;}
-
     if(isProvider){doc.setFillColor(C.provBg[0],C.provBg[1],C.provBg[2]);}
     else{doc.setFillColor(C.greenLight[0],C.greenLight[1],C.greenLight[2]);}
     doc.rect(ML,y,COL_W,11,'F');
@@ -725,7 +851,6 @@ function exportMobilePDF(){
     doc.setFont('helvetica','normal');doc.setFontSize(7);doc.setTextColor(C.gray[0],C.gray[1],C.gray[2]);
     doc.text('('+cat.items.length+')',ML+COL_W-1,y+7,{align:'right'});
     y+=13;
-
     if(isProvider&&cat.contactText){
       doc.setFillColor(C.tealLight[0],C.tealLight[1],C.tealLight[2]);doc.roundedRect(ML,y,COL_W,7.5,1,1,'F');
       doc.setTextColor(C.teal[0],C.teal[1],C.teal[2]);doc.setFont('helvetica','bold');doc.setFontSize(7);
@@ -738,12 +863,20 @@ function exportMobilePDF(){
 
   const drawItemsMobile=(items)=>{
     items.forEach((item,idx)=>{
-      const hasNote=item.note&&item.note.trim()!=='';
-      const rowH=hasNote?16:11;
-      if(y+rowH>MAX_Y){doc.addPage();y=8;}
-      if(idx%2===0){doc.setFillColor(248,251,244);doc.rect(ML,y-0.5,COL_W,rowH+0.5,'F');}
-      drawItem(doc,item,ML,y,COL_W,C,mobileCheckCounter++,{mobile:true});
-      y+=rowH+1.2;
+      // Need to estimate height before drawing (because of multiline)
+      // We'll do a dry run by calling drawItem on a temp y far below, which would just compute height.
+      // Simpler: use a generous estimate, then if at edge, push to new page first.
+      const estH=18+(item.note?10:0); // generous max for wrapping
+      if(y+estH>MAX_Y){doc.addPage();y=8;}
+      // Draw actual
+      const startY=y;
+      // bg row will be sized after we know real height — draw bg first with min height, then redraw if needed
+      // Simpler: skip alternating bg for mobile (doesn't add much value with multiline)
+      const realH=drawItem(doc,item,ML,y,COL_W,C,mobileCheckCounter++,{mobile:true});
+      // Light separator between items
+      doc.setDrawColor(235,238,232);doc.setLineWidth(0.2);
+      doc.line(ML+8,y+realH+0.5,PW-MR,y+realH+0.5);
+      y+=realH+2;
     });
     y+=3;
   };
@@ -783,10 +916,19 @@ function showToast(msg){const t=document.getElementById('toast');t.textContent=m
 
 document.querySelectorAll('.nav-tab').forEach(tab=>{tab.addEventListener('click',()=>{document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));document.querySelectorAll('.section-page').forEach(p=>p.classList.remove('active'));tab.classList.add('active');document.getElementById('tab-'+tab.dataset.tab).classList.add('active');if(tab.dataset.tab==='config')renderConfig();if(tab.dataset.tab==='historial')renderHistory();});});
 
+// Search bar with mobile expand/contract on focus
+const headerEl=document.getElementById('app-header');
 const searchInput=document.getElementById('search-input');
 const searchClear=document.getElementById('search-clear');
+searchInput.addEventListener('focus',()=>{headerEl.classList.add('search-active');});
+searchInput.addEventListener('blur',()=>{
+  // Small delay so click on clear works first
+  setTimeout(()=>{
+    if(document.activeElement!==searchInput)headerEl.classList.remove('search-active');
+  },150);
+});
 searchInput.addEventListener('input',e=>{searchQuery=e.target.value.trim();searchClear.classList.toggle('show',!!searchQuery);renderSection('habituales');renderSection('ocasionales');renderProviders();});
-searchClear.addEventListener('click',()=>{searchInput.value='';searchQuery='';searchClear.classList.remove('show');renderSection('habituales');renderSection('ocasionales');renderProviders();});
+searchClear.addEventListener('click',()=>{searchInput.value='';searchQuery='';searchClear.classList.remove('show');renderSection('habituales');renderSection('ocasionales');renderProviders();searchInput.focus();});
 
 const themeBtn=document.getElementById('theme-toggle');
 function applyTheme(dark){document.documentElement.setAttribute('data-theme',dark?'dark':'');themeBtn.textContent=dark?'☀️':'🌙';localStorage.setItem('puuungosa_theme',dark?'dark':'light');}
@@ -823,3 +965,4 @@ renderAll();
 </script>
 </body>
 </html>
+
